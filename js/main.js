@@ -1,5 +1,6 @@
-let comp = prompt("¿Quieres conocer el mayor, menor, múltiplo de 2, Mútiplo de 3 o si el 3° es la suma del 1° y el 2°?","mayor menor mul2 mul3 suma");
+let comp = prompt("¿Quieres conocer el mayor, menor, múltiplo de 2, Mútiplo de 3 o si el 3° es la suma del 1° y el 2° o si quieres que lo adivine?","mayor menor mul2 mul3 suma adivinar");
 let a,b,c,res;
+console.log((50%2));
 function mayor(a,b,c){
     if(a<b){//paso 1
         if(b>c){//paso 2
@@ -84,6 +85,132 @@ switch (comp) {
             alert(a+" es el menor");
         }
     break;
+
+//3.-
+
+/*
+Realizar un algoritmo para adivinar un número entre el 1 y el 100 en el menor número de pasos posibles
+
+1.-Preguntar si el número es par o impar
+2.-Preguntar si el número es de 1 solo dígito
+3.1.-Si el paso 2 es verdadero y en base a la respuesta del paso 1:
+    3.1.-para par preguntar si es mayor o menor a 5 e ir descartando los números con el mismo procedimiento
+    3.2.-Para impar preguntar si es mayor o menor a 6 e ir descartando los números con el mismo procedimiento
+4.-Si el paso 2 es falso y en base al paso 1
+    4.1.-Para impares, preguntar si el número es mayor o menor a 50 y seguir dividiendo por mitad el número (ej. 24, 74, 14, 86, etc.) hasta encontrar el número
+    4.2.-Para pares, preguntar si el número es mayor o menor a 51 y seguir dividiendo por mitad el número (ej. 25, 75, 13, 85, etc.) hasta encontrar el número
+*/
+    case "adivinar":
+        /*function adivinar(){
+	let superior = 100;
+	let inferior = 0;
+	let noEncontrado = true;
+	while(noEncontrado){
+		let mid = parseInt( inferior + ((superior-inferior)/2));
+		if((superior-inferior)/2)<1){
+			noEncontrado = false;
+			alert("Tu número es el "+(parseInt(mid)+1));
+			break;
+		}
+		let res = confirm("Tu número es menor o igual a "+mid");
+		if(res){
+			superior=mid;
+		}else{
+			inferior=mid;
+		}
+	}
+}
+*/
+        a=prompt("Ingresa un número entero entre 100 y 200. Por ahora solo enteros! :) : ", "");
+        a=parseFloat(a);
+        while((a<1)||(a>100)){
+            a=prompt("Pon atención, paps. Te doy otra oportunidad: ", "");
+        }
+        let ask=50;
+        let flag;
+        let z=prompt("¿Es tu número par o impar?", "par impar");
+        if(z=="par"){
+            cmpr(ask);
+        }else if(z=="impar"){
+            ask=51;
+            cmpr(ask);
+        }
+        function cmpr(ask){
+            if( ask==a){
+                z=prompt("Tu número es: "+ask+" ?", "si no");
+                if(z="si"){
+                    alert("¡Sospeché desde un principio que "+ask+" era tu número!");
+                    flag=false;
+                }else if(z="no"){
+                    alert("Deberías ir a que te chequen la cabeza");
+                    flag=false;
+                }
+            }
+if(flag!=false){     
+            let w,x,y;       
+            if( (ask%2) >0 ){
+                while(ask!=a){
+                    z=prompt("¿Tu número es mayor a "+ask+" ?", "si no");// Paso 1
+                    if( (z=="si") && (z<101) ){
+                        w++;
+                        console.log("Epale W"+w);
+                        ask+=10;
+                        z=prompt("¿Tu número es mayor a "+ask+" ?", "si no");
+                    }else if( (z=="no") && (ask!=10) ){
+                        x++;
+                        console.log("Epale X"+x);
+                        ask-=10;
+                    }else if((z=="no")&&(ask==10)){
+                        ask-2;
+                        y++;
+                        console.log("Epale Y"+y);
+                        z=prompt("¿Tu número es mayor a "+ask+" ?", "si no");
+                    }
+                }
+                console.log(ask);
+                cmpr(ask);	
+            }else if( (ask%2) == 0){
+                while(ask!=a){
+                    z=prompt("¿Tu número es mayor a "+ask+" ?", "si no");
+                    if(z=="si"){
+                        ask+=10;
+                        z=prompt("¿Tu número es mayor a "+ask+" ?", "si no");
+                        
+                    }else if(z=="no"){
+                        ask-=10;
+
+                    }
+                }
+                console.log(ask);
+                cmpr(ask);
+            }
+            return(ask);
+        }
+    }        
+        // console.log("No puemde ser");
+        //     if(a==aux){
+        //         console.log("Compara el número con aux");
+        //         ask=prompt("¿Tu número es el "+aux+" ?");
+        //         if(ask==true){
+        //             alert("Lo sospeché desde un principio");
+        //         }
+        //     }else{
+        //     console.log("¿Por qué demonios entraste aquí?");    
+        //         while((ask==true)&&(aux>100)){
+        //             ask=alert("¿Es tu número mayor a "+aux+"?");
+        //             aux+10;
+        //             console.log("HeeHee");
+        //         }    
+        //     } 
+    break;
+
+/*
+let num;
+while(isNan(num) || (num<1||num>100)){
+    num = parsInt(prompt("Escribe un número entre el 1 y el 100 ",""));
+    console.log(num);
+}
+*/
 
 // 4.-Solicitar un entero (entre el 100 y el 200) y determinar si es múltiplo de 3
 
